@@ -2,7 +2,7 @@
 
 A compact Windows macro and autoclicker utility with customizable hotkeys, profiles, and a minimal status overlay.
 
-**Version:** 1.3.2 · **Platform:** Windows 10 / 11, x64 · **Status:** Beta
+**Version:** 1.0 · **Platform:** Windows 10 / 11, x64 · **Status:** Beta
 
 ## Download
 

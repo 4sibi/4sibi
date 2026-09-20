@@ -1,0 +1,48 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build standalone executable
+        shell: pwsh
+        run: ./build.ps1
+      - name: Run isolated self-tests
+        shell: pwsh
+        run: |
+          $testDir = Join-Path $env:RUNNER_TEMP '4sibi-tests'
+          $process = Start-Process -FilePath './artifacts/win-x64/4sibi.exe' -ArgumentList '--self-test', $testDir -WindowStyle Hidden -PassThru
+          if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Self-tests timed out.' }
+          Get-Content "$testDir/result.txt"
+          if ($process.ExitCode -ne 0) { throw 'Self-tests failed.' }
+          Copy-Item "$testDir/result.txt" './artifacts/win-x64/test-results.txt'
+      - name: Add license and provenance
+        shell: pwsh
+        run: |
+          Copy-Item LICENSE, THIRD-PARTY-NOTICES.md, PRIVACY.md artifacts/win-x64/
+          "Source commit: $env:GITHUB_SHA" | Set-Content artifacts/win-x64/BUILD.txt
+          "Unsigned build. Not approved or signed by SignPath." | Add-Content artifacts/win-x64/BUILD.txt
+          $hash = (Get-FileHash artifacts/win-x64/4sibi.exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  4sibi.exe" | Set-Content artifacts/win-x64/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 4sibi-windows-x64-${{ github.sha }}
+          path: artifacts/win-x64/
+          if-no-files-found: error

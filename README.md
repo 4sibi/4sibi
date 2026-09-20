@@ -54,10 +54,19 @@ The application operates locally and does not require a network connection or se
 
 ## Validation
 
-Version 1.3.2 passed **102 automated checks** covering application logic and UI behavior. These checks do not emit operating-system input. Separate Windows 10 / 11 machine testing and a live Roblox test have not been completed; compatibility across all setups is not guaranteed.
+The codebase passed **102 automated checks** covering application logic and UI behavior. These checks do not emit operating-system input. Separate Windows 10 / 11 machine testing and a live Roblox test have not been completed; compatibility across all setups is not guaranteed.
 
 ## Feedback
 
 Use the repository's **Issues** section to report problems. Include your Windows version, 4sibi version, steps to reproduce, and a screenshot if helpful. Do not upload personal data or signing credentials.
 
 4sibi is an independent project and is not affiliated with Roblox.
+
+## Source and license
+
+Source code is available in [src/4sibi](src/4sibi) under the [MIT license](LICENSE).
+See [BUILDING.md](BUILDING.md) for local builds and GitHub Actions details.
+
+## Code signing policy
+
+The application is currently unsigned. See [SIGNING.md](SIGNING.md) for the current status and proposed signing process, and [PRIVACY.md](PRIVACY.md) for local data handling.

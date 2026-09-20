@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>4sibi</AssemblyName>
+    <Version>1.0.0</Version>
+    <Product>4sibi</Product>
+    <Title>4sibi</Title>
+    <Authors>4sibi</Authors>
+    <Description>Compact Windows macro utility</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ApplicationIcon>Assets/taskbar.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>Sibi.Program</StartupObject>
+    <!-- WPF owns DPI setup; WinForms is used only for the notification icon. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+  <ItemGroup><Resource Include="Assets/*" /></ItemGroup>
+</Project>

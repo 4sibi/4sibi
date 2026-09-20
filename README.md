@@ -6,7 +6,9 @@ A compact Windows macro and autoclicker utility with customizable hotkeys, profi
 
 ## Download
 
-Open the **Releases** section of this repository and download `4sibi.exe` from the release assets. GitHub's automatically generated source archives are not the ready-to-run application.
+[⬇ Download 4sibi for Windows 10/11 (64-bit)](https://github.com/4sibi/4sibi/releases/latest)
+
+**Instructions:** [English](README-EN.md) · [Deutsch](README-DE.md)
 
 No installer or separate .NET installation is required. Close any previous instance before starting a new version.
 
